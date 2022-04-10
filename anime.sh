@@ -12,10 +12,12 @@ echo "---------------------------------------------------------------"
 echo ""
 read titletwo
 head -n $titletwo temp.txt | tail -1 > tempp.txt
+cat tempp.txt
 sed -e 's/\s\+/-/g' tempp.txt > temp.txt
-titletwo=`cat temp.txt | tail -1`
+titletwo=`cat temp.txt | sed 's/://g' | tail -1`
 echo "What episode would you like to download?"
 read episode
+python3 anime.py $episode $titletwo
 file1=`python3 anime.py $episode $titletwo` 
 echo $file1
 USER_ID=$file1 node mod.js 
