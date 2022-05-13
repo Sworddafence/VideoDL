@@ -1,0 +1,25 @@
+#!/bin/bash
+echo "Please enter anime that you want to search: "
+read title
+curl -s https://gogoanime.gg//search.html?keyword=$title | grep "<p class=\"name\"" | head -76 | cut -c 64- |rev | cut -c7- | rev > /home/bonk/Kisa/temmp.txt
+
+echo "---------------------------------------------------------------"
+echo "    Type the number of the anime that you want to watch"
+echo "---------------------------------------------------------------"
+#sed -i '1,65d' /home/bonk/Kisa/temp.txt
+cat /home/bonk/Kisa/temmp.txt | sed 's/.*title//' | sed 's/>.*//' | cut -c3- | rev | cut -c2- | rev | grep -v "Dub"> /home/bonk/Kisa/temp.txt 
+cat -n /home/bonk/Kisa/temp.txt 
+
+echo "---------------------------------------------------------------"
+echo ""
+read titletwo
+head -n $titletwo /home/bonk/Kisa/temp.txt | tail -1 > /home/bonk/Kisa/tempp.txt
+cat /home/bonk/Kisa/tempp.txt
+sed -e 's/\s\+/-/g' /home/bonk/Kisa/tempp.txt > /home/bonk/Kisa/temp.txt
+titletwo=`cat /home/bonk/Kisa/temp.txt | sed 's/://g' | tail -1`
+echo "What episode would you like to download?"
+read episode
+python3 anime.py $episode $titletwo
+file1=`python3 anime.py $episode $titletwo` 
+echo $file1
+USER_ID=$file1 FAKE_VAR=$titletwo node /home/bonk/Kisa/test.js 
