@@ -18,6 +18,7 @@ cat /home/bonk/Kisa/tempp.txt
 sed -e 's/\s\+/-/g' /home/bonk/Kisa/tempp.txt > /home/bonk/Kisa/temp.txt
 titletwo=`cat /home/bonk/Kisa/temp.txt | sed 's/://g' | tail -1`
 echo "What episode would you like to download?"
+ls ./anime/$titletwo
 read episode
 python3 anime.py $episode $titletwo
 file1=`python3 anime.py $episode $titletwo` 
