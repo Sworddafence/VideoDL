@@ -1,0 +1,15 @@
+#!/bin/bash
+while :
+do
+
+file2=`ls -R anime | grep crdownload`
+echo $file2
+if [ "$file2" == "" ]; then
+	echo "done"
+	killall chrome
+	exit
+fi
+echo incomplete
+sleep 10
+done
+

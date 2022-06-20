@@ -23,4 +23,8 @@ read episode
 python3 anime.py $episode $titletwo
 file1=`python3 anime.py $episode $titletwo` 
 echo $file1
-USER_ID=$file1 FAKE_VAR=$titletwo node /home/bonk/Kisa/test.js 
+USER_ID=$file1 FAKE_VAR=$titletwo node /home/bonk/Kisa/test.js &
+sleep 50
+./checkdone
+rclone sync ./anime GoogleDrive:Anime
+exit
